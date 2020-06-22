@@ -1,5 +1,6 @@
 package ar.com.ada.api.rrhh.services;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +34,29 @@ public class EmpleadoService {
             return eo.get();
         }
         return null;
+    }
+
+    public boolean actualizarSueldoEmpleado(Empleado empleadoOriginal, BigDecimal sueldo){
+
+        empleadoOriginal.setSueldo(sueldo);
+
+        repository.save(empleadoOriginal);
+
+        return true;
+
+    }
+
+    public void actualizarEstado(Empleado empleado,int estadoId){
+
+        empleado.setEstadoId(estadoId);
+
+        repository.save(empleado);
+    }
+
+    public void borrarEmpleado(Empleado empleado){
+
+        this.actualizarEstado(empleado, 0);
+
     }
     
 }
